@@ -6,8 +6,8 @@ const btnPlay = document.querySelector('.js_btnPlay');
 const textToPlayResult = document.querySelector('.js_textToPlayResult');
 const credit = document.querySelector('.js_credit');
 
-function aleatNumber () {
-    
+function getRandomNumber(max) {
+    return Math.ceil(Math.random() * max);
 };
 
 function getDiceUser () {
@@ -26,6 +26,8 @@ function handlePlay (event) {
     event.preventDefault();
     getDiceUser();
     getBetUser();
+    getRandomNumber(6);
+    console.log('Este es el randomNumber: ' + getRandomNumber(6));
 };
 
 btnPlay.addEventListener('click', handlePlay);
