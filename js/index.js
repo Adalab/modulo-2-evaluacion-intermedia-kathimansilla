@@ -6,28 +6,51 @@ const btnPlay = document.querySelector('.js_btnPlay');
 const textToPlayResult = document.querySelector('.js_textToPlayResult');
 const credit = document.querySelector('.js_credit');
 
+//prueba
+let currentCredit = 50;
+console.log(currentCredit);
+
 function getRandomNumber(max) {
     return Math.ceil(Math.random() * max);
 };
 
 function getDiceUser () {
     const diceUser = dice.value;
+    return parseInt(diceUser);
     console.log(diceUser);
     //delete console.log
 };
 
 function getBetUser () {
     const betUser = inputBet.value;
+    return parseInt(betUser);
     console.log(betUser);
     //delete console.log
 };
 
+function compareNumbers () {
+    let randomNumber = getRandomNumber(6);
+    console.log('Este es el randomNumber: ' + randomNumber);
+    let diceUser = getDiceUser();
+    let betUser = getBetUser();
+    //delete console.log
+    console.log(randomNumber, diceUser, betUser);
+    if (randomNumber === diceUser) {
+        currentCredit = currentCredit + (betUser * 2);
+        credit.innerHTML = `Saldo ${currentCredit}`;
+        textToPlayResult.innerHTML = 'Has ganado el doble de lo apostado :)';
+    }
+    else {
+        currentCredit = currentCredit - betUser;
+        credit.innerHTML = `Saldo ${currentCredit}`;
+        textToPlayResult.innerHTML = 'Has perdido lo apostado :(';
+    }
+};
+
+
 function handlePlay (event) {
     event.preventDefault();
-    getDiceUser();
-    getBetUser();
-    getRandomNumber(6);
-    console.log('Este es el randomNumber: ' + getRandomNumber(6));
+    compareNumbers();
 };
 
 btnPlay.addEventListener('click', handlePlay);
